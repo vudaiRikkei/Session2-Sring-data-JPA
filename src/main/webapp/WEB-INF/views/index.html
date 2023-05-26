@@ -1,10 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
 <body>
-$END$
+<h1>Danh sách khách hàng</h1>
+<a th:href="@{/add}">Create</a>
+<table border="1" >
+    <thead><tr>
+        <th>STT</th>
+        <th>ID</th>
+        <th>FIRST NAME</th>
+        <th>LAST NAME</th>
+        <th colspan="2">ACTION</th>
+    </tr></thead>
+    <tbody>
+    <th:block th:each="cus,cusStat:${list}">
+        <tr>
+            <td th:text="${cusStat.count}"></td>
+            <td th:text="${cus.id}"></td>
+            <td th:text="${cus.firstName}"></td>
+            <td th:text="${cus.lastName}"></td>
+            <td><a th:href="@{|/edit/${cus.id}|}">Edit</a></td>
+            <td><a th:href="@{|/delete/${cus.id}|}">Delete</a></td>
+        </tr>
+    </th:block>
+
+    </tbody>
+</table>
 </body>
 </html>
